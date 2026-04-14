@@ -1,0 +1,58 @@
+using EjerciciosNet02.Ejercicio01Veterinaria;
+
+EjercicioVeterinaria();
+static void EjercicioVeterinaria()
+{
+    AdministrarClientes administracion = new AdministrarClientes();
+    Registro registro = new Registro();
+    bool activo=true;
+    while (activo)
+    {
+        int input;
+        Console.WriteLine("Lo que desee realizar:");
+        Console.WriteLine("1:Inscribir un animal");
+        Console.WriteLine("2:Dar de baja un animal");
+        Console.WriteLine("3:Buscar un animal por nombre");
+        Console.WriteLine("4:Ordenar los animales por nombre");
+        Console.WriteLine("Cualquier otra tecla para salir");
+        input=Convert.ToInt16(Console.ReadLine()!);
+
+        switch (input)
+        {
+            case 1:
+                Console.WriteLine("Ingrese el nombre del animal:");
+                string nombre = Console.ReadLine()!;
+                Console.WriteLine("Ingrese la especie del animal:");
+                string especie = Console.ReadLine()!;
+                Console.WriteLine("Ingrese la edad del animal:");
+                int edad = Convert.ToInt32(Console.ReadLine()!);
+                Animal animal = new Animal(){Nombre=nombre,Especie=especie,Edad=edad};
+                administracion.AgregarAnimal(registro,animal);
+                break;
+            case 2:
+                Console.WriteLine("Ingrese el nombre del animal que desea dar de baja:");
+                string eliminar=Console.ReadLine()!;
+                for (int i=0; i < registro.RegistroAnimales.Count; i++)
+                {
+                    if (registro.RegistroAnimales[i].Nombre == eliminar)
+                    {
+                        administracion.DarBajaAnimal(registro, registro.RegistroAnimales[i]);
+                    }
+                }
+                break;
+            case 3:
+                Console.WriteLine("Ingrese el nombre del animal a buscar:");
+                string buscar = Console.ReadLine()!;
+                Console.WriteLine($"Nombre: {administracion.EncontrarPaciente(registro, buscar).Nombre}, Especie: {administracion.EncontrarPaciente(registro, buscar).Especie}, Edad: {administracion.EncontrarPaciente(registro, buscar).Edad}" );
+                break;
+            case 4:
+                var lista=administracion.ListarOrdenados(registro);
+                for (int i=0; i < registro.RegistroAnimales.Count; i++)
+                    Console.WriteLine($"Nombre: {lista[i].Nombre}, Especie: {lista[i].Especie}, Edad: {lista[i].Edad}");
+                break;
+            default:
+                activo=false;
+                break;
+        }
+    }
+}
