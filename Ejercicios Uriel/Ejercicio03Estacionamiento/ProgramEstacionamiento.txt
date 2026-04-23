@@ -1,0 +1,47 @@
+using EjerciciosNet02.Ejercicio03Estacionamiento;
+
+EjercicioEstacionamiento();
+static void EjercicioEstacionamiento()
+{
+    Estacionamiento estacionamiento = new Estacionamiento(10);
+    bool activo=true;
+    while (activo)
+    {
+        int input;
+        Console.WriteLine("Lo que desee realizar:");
+        Console.WriteLine("1:Ingresar un auto");
+        Console.WriteLine("2:Retirar un auto");
+        Console.WriteLine("3:Verificar si un auto está estacionado");
+        Console.WriteLine("4:Verificar lugares disponibles");
+        Console.WriteLine("Cualquier otra tecla para salir");
+        input=Convert.ToInt16(Console.ReadLine()!);
+
+        switch (input)
+        {
+            case 1:
+                Console.WriteLine("Ingrese la patente del auto:");
+                string patente = Console.ReadLine()!;
+                Console.WriteLine("Ingrese el nombre del dueño:");
+                string nombre = Console.ReadLine()!;
+                Autos auto = new Autos(){Patente=patente,Nombre_D=nombre};
+                estacionamiento.IngresarAuto(auto);
+                break;
+            case 2:
+                Console.WriteLine("Ingrese la patente del auto que desea retirar:");
+                string patenteRetirar = Console.ReadLine()!;
+                estacionamiento.RetirarAuto(patenteRetirar);
+                break;
+            case 3:
+                Console.WriteLine("Ingrese la patente del auto que desea verificar:");
+                string patenteVerificar = Console.ReadLine()!;
+                estacionamiento.AutoEstacionado(patenteVerificar);
+                break;
+            case 4:
+                estacionamiento.LugaresDisponibles();
+                break;
+            default:
+                activo=false;
+                break;
+        }
+    }
+}

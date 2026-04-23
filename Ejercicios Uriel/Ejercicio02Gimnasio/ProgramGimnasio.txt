@@ -1,0 +1,54 @@
+using EjerciciosNet02.Ejercicio02Gimnasio;
+
+EjercicioGimnasio();
+static void EjercicioGimnasio()
+{
+    Gimnasio gimnasio = new Gimnasio(10);
+    bool activo=true;
+    while (activo)
+    {
+        int input;
+        Console.WriteLine("Lo que desee realizar:");
+        Console.WriteLine("1:Inscribir un socio");
+        Console.WriteLine("2:Dar de baja un socio");
+        Console.WriteLine("3:Marcar cuota como pagada");
+        Console.WriteLine("4:Marcar cuota como vencida");
+        Console.WriteLine("5:Mostrar cantidad de socios al día");
+        Console.WriteLine("Cualquier otra tecla para salir");
+        input=Convert.ToInt16(Console.ReadLine()!);
+
+        switch (input)
+        {
+            case 1:
+                Console.WriteLine("Ingrese el nombre del socio:");
+                string nombre = Console.ReadLine()!;
+                Console.WriteLine("Ingrese el número de socio:");
+                int num_socio = Convert.ToInt32(Console.ReadLine()!);
+                Socios socio = new Socios(){Nombre=nombre,Num_socio=num_socio,Activo=true};
+                gimnasio.DarAlta(socio);
+                break;
+            case 2:
+                Console.WriteLine("Ingrese el número de socio que desea dar de baja:");
+                int numSocioBaja = Convert.ToInt32(Console.ReadLine()!);
+                gimnasio.DarBaja(numSocioBaja);
+                break;
+            case 3:
+                Console.WriteLine("Ingrese el número de socio:");
+                int numSocioPagar = Convert.ToInt32(Console.ReadLine()!);
+                gimnasio.MarcarCuotaPaga(numSocioPagar);
+                break;
+            case 4:
+                Console.WriteLine("Ingrese el número de socio:");
+                int numSocioVencer = Convert.ToInt32(Console.ReadLine()!);
+                gimnasio.MarcarCuotaVencida(numSocioVencer);
+                break;
+            case 5:
+                int cantidadSociosAlDia = gimnasio.ObtenerCantidadSociosAlDia();
+                Console.WriteLine($"Cantidad de socios al día: {cantidadSociosAlDia}");
+                break;
+            default:
+                activo=false;
+                break;
+        }
+    }
+}

@@ -7,7 +7,7 @@ public class AdministrarClientes
 
     public void DarBajaAnimal(Registro registro, Animal animal) => registro.RegistroAnimales.Remove(animal);
 
-    public Animal EncontrarPaciente(Registro registro, string nombre)
+    public Animal? EncontrarPaciente(Registro registro, string nombre)
     {
         for (int i=0; i< registro.RegistroAnimales.Count; i++)
         {

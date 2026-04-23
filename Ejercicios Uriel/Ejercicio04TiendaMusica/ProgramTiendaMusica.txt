@@ -1,4 +1,4 @@
-﻿using EjerciciosNet02.Ejercicio04TiendaMusica;
+using EjerciciosNet02.Ejercicio04TiendaMusica;
 
 EjercicioTiendaMusica();
 static void EjercicioTiendaMusica()
